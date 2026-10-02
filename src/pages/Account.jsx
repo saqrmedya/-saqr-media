@@ -1,0 +1,1 @@
+import React from 'react';export default function Account(){return <main className="section container"><div className="glass" style={{padding:28,borderRadius:24}}><h1>حسابي</h1><p className="muted">تسجيل الدخول المستقل عبر Supabase يتفعّل بعد إضافة مفاتيح Supabase في البيئة.</p><p>حالياً التصفح والخدمات والسلة وطلب واتساب تعمل بدون إجبار تسجيل الدخول.</p></div></main>}

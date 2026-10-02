@@ -1,0 +1,25 @@
+{
+  "previewPort": 3000,
+  "healthPath": "/",
+  "startCommand": "docker compose -f docker-compose.base44.yml up -d",
+  "secrets": [
+    {
+      "name": "VITE_SUPABASE_URL",
+      "description": "Optional Supabase project URL. The app runs standalone with local data if absent; only needed to enable Supabase-backed admin editing.",
+      "requiredAtBoot": false,
+      "generatedForDevelopment": false
+    },
+    {
+      "name": "VITE_SUPABASE_ANON_KEY",
+      "description": "Optional Supabase anon key. Paired with VITE_SUPABASE_URL.",
+      "requiredAtBoot": false,
+      "generatedForDevelopment": false
+    },
+    {
+      "name": "VITE_AI_ENDPOINT",
+      "description": "Optional external AI backend URL for the Saqr AI page. Must not contain provider API keys.",
+      "requiredAtBoot": false,
+      "generatedForDevelopment": false
+    }
+  ]
+}

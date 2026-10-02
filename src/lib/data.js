@@ -1,0 +1,14 @@
+import backup from '../data/backup.json';
+export const entities = backup.entities || {};
+export const categories = (entities.Category || []).map(x=>x.data).sort((a,b)=>(a.display_order||0)-(b.display_order||0));
+export const services = (entities.Service || []).map(x=>x.data).filter(x=>x.published!==false && x.is_active!==false);
+export const products = (entities.Product || []).map(x=>x.data).filter(x=>x.status!=='hidden');
+export const platforms = (entities.Platform || []).map(x=>x.data).filter(x=>x.active!==false).sort((a,b)=>(a.sort_order||0)-(b.sort_order||0));
+export const paymentMethods = (entities.PaymentMethod || []).map(x=>x.data).filter(x=>x.enabled!==false).sort((a,b)=>(a.sort_order||0)-(b.sort_order||0));
+export const site = (entities.SiteSetting||[])[0]?.data || {brand_name:'صقر ميديا',brand_name_en:'SAQR MEDIA',primary_color:'#6D28D9',accent_color:'#FF7A00',hero_title:'كل خدمات مشروعك التسويقية والرقمية بمكان واحد 🦅',hero_description:'من الهوية والتصميم والإعلانات إلى المواقع والمحتوى والذكاء الاصطناعي والحضور الرقمي.',whatsapp_number:'9647710392539'};
+export const news=(entities.News||[]).map(x=>x.data).filter(x=>x.published!==false);
+export const tips=(entities.DailyTip||[]).map(x=>x.data).filter(x=>x.published!==false);
+export const media=(entities.MediaAsset||[]).map(x=>x.data);
+export const formatPrice=(s)=>{ if(s?.is_free||s?.is_gift||s?.price_type==='free') return '🎁 مجاني'; if(s?.price_type==='range') return `يبدأ من ${(s.min_price||0).toLocaleString('ar-IQ')} د.ع`; if(s?.price_type==='fixed'&&s.fixed_price!=null) return `${Number(s.fixed_price).toLocaleString('ar-IQ')} د.ع`; return 'السعر حسب الطلب'; };
+export const numericPrice=(s)=> s?.is_free||s?.is_gift?0:(s?.fixed_price ?? s?.min_price ?? 0);
+export const categoryFor=(s)=>categories.find(c=>c.id===s.category_id||c.slug===s.category_slug);
